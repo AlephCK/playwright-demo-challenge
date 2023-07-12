@@ -1,9 +1,8 @@
 version: 2.1
 jobs:
-  build:
+  run-test:
     docker:
       - image: mcr.microsoft.com/playwright:v1.36.0
-    working_directory: ~/app
     # Steps to the job
     steps:
       - checkout
@@ -16,6 +15,6 @@ jobs:
           path: results.xml
 # Invoke jobs via workflows
 workflows:
-  build:
+  run-test-workflow:
     jobs:
-      - build
+      - run-test
