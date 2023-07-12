@@ -1,0 +1,17 @@
+{
+  "name": "automationchallengev2",
+  "version": "1.0.0",
+  "description": "This project is part of the Senior Automation Challenge v2 to automate functional test cases of OrangeHRM and API tests for Marvel Website",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Aleph Cruz",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "@playwright/test": "^1.35.1",
+    "blueimp-md5": "^2.19.0",
+    "eslint-plugin-playwright": "^0.15.3",
+    "eslint": "^8.44.0"
+
+  }
+}
