@@ -35,8 +35,9 @@ For the API testing it was required to be automated 3 request to the Marvel Comi
 3. Automate that all characters for the X-Man comic can be fetch
 
 ## Tech Stack
+- [nodeJS](https://nodejs.org/en/about/)
 - [Javascript](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics)
-- [Playwright](https://www.cypress.io)
+- [Playwright](https://playwright.dev/)
 - [eslint](https://www.npmjs.com/package/eslint)
 - [blueimp-md5](https://www.npmjs.com/package/blueimp-md5)
 - [FakerJS](http://marak.github.io/faker.js/)
@@ -46,7 +47,7 @@ For the API testing it was required to be automated 3 request to the Marvel Comi
 ### Clone the Repository
 Using SSH
 ```bash
-git clone git@github.com:AlephCK/AutomationChallenge.git
+git clone git@github.com:AlephCK/AutomationChallengeV2.git
 ```
 
 ### Dev Install
