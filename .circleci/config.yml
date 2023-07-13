@@ -16,20 +16,16 @@ jobs:
           command:
             npm run lint-check
       - run:
-          name: Run E2E tests
+          name: Run API and E2E tests
           command:
-            npx playwright test --reporter=junit
+            MARVEL_PRIVATE_KEY=${MARVEL_PRIVATE_KEY} MARVEL_PRIVATE_KEY=${MARVEL_PRIVATE_KEY} npx playwright test --reporter=junit
           environment:
             PLAYWRIGHT_JUNIT_OUTPUT_DIR: ~/test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
-          path: ~/test-results
-          destination: artifacts
-      - store_artifacts:
           path: ~/playwright-report
-          destination: artifacts
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
