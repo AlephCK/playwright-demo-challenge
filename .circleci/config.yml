@@ -16,9 +16,9 @@ jobs:
           command:
             npm run lint-check
       - run:
-          name: Run test
+          name: Run E2E tests
           command:
-            npx playwright test --reporter=junit --project=chromium
+            npx playwright test --reporter=junit
           environment:
             PLAYWRIGHT_JUNIT_OUTPUT_DIR: ~/test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
