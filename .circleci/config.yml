@@ -33,7 +33,7 @@ jobs:
       - store_test_results:
           path: results.xml
       - store_artifacts:
-          path: /playwright-report
+          path: playwright-report/index.html
       - store_artifacts:
           path: results.xml
 # Invoke jobs via workflows

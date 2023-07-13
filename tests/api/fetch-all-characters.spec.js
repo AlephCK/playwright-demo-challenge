@@ -1,5 +1,5 @@
+//@ts-check
 const { test, expect } = require('@playwright/test');
-
 const { apiData, hash } = require('../../data/apiConfig')
 
 test.describe("Valid GET Requests Scenarios", () => {
@@ -8,6 +8,7 @@ test.describe("Valid GET Requests Scenarios", () => {
   test('GET All Characters', async ({ request }) => {
     const response = await request.get(`characters`, {
       params: {
+        //@ts-ignore
         apikey: apiData.publicKey,
         limit: apiData.limit,
         ts: apiData.timeStamp,
@@ -28,6 +29,7 @@ test.describe("Invalid GET Requests Scenarios", async () => {
     const response = await request.get(`characters`, {
       params: {
         ts: apiData.timeStamp,
+        //@ts-ignore
         apikey: apiData.publicKey
       },
     });
@@ -41,6 +43,7 @@ test.describe("Invalid GET Requests Scenarios", async () => {
     const response = await request.get(`characters`, {
       params: {
         hash: hash.md5Hash,
+        //@ts-ignore
         apikey: apiData.publicKey
       },
     });
@@ -53,6 +56,7 @@ test.describe("Invalid GET Requests Scenarios", async () => {
   test('GET All Characters without timestamp and hash', async ({ request }) => {
     const response = await request.get(`characters`, {
       params: {
+        //@ts-ignore
         apikey: apiData.publicKey
       },
     });
@@ -87,6 +91,7 @@ test.describe("Invalid GET Requests Scenarios", async () => {
     const response = await request.get(`characters`, {
       params: {
         ts: 'test',
+        //@ts-ignore
         apikey: apiData.publicKey,
         hash: hash.md5Hash
       },
@@ -101,6 +106,7 @@ test.describe("Invalid GET Requests Scenarios", async () => {
     const response = await request.get(`characters`, {
       params: {
         ts: 'test',
+        //@ts-ignore
         apikey: apiData.publicKey,
         hash: 'test'
       },

@@ -1,3 +1,4 @@
+//@ts-check
 const { test, expect } = require('@playwright/test');
 const { apiData, hash } = require('../../data/apiConfig')
 
@@ -7,6 +8,7 @@ test.describe("Valid GET Requests Scenarios", () => {
   test('Fetch All Comics', async ({ request }) => {
     const response = await request.get(`comics`, {
       params: {
+        //@ts-ignore
         apikey: apiData.publicKey,
         limit: apiData.limit,
         ts: apiData.timeStamp,
@@ -24,6 +26,7 @@ test.describe("Valid GET Requests Scenarios", () => {
     const response = await request.get(`comics/${comicId}/characters`, {
       params: {
         ts: apiData.timeStamp,
+        //@ts-ignore
         apikey: apiData.publicKey,
         hash: hash.md5Hash
       },
@@ -42,6 +45,7 @@ test.describe("Invalid GET Requests Scenarios", async () => {
     const response = await request.get(`comics/test/characters`, {
       params: {
         ts: apiData.timeStamp,
+        //@ts-ignore
         apikey: apiData.publicKey,
         hash: hash.md5Hash
       },
@@ -56,6 +60,7 @@ test.describe("Invalid GET Requests Scenarios", async () => {
     const response = await request.get(`comics/characters`, {
       params: {
         ts: apiData.timeStamp,
+        //@ts-ignore
         apikey: apiData.publicKey,
         hash: hash.md5Hash
       },
