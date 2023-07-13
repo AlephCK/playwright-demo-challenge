@@ -3,11 +3,6 @@ jobs:
   run-test:
     docker:
       - image: mcr.microsoft.com/playwright:v1.36.0
-    environment:
-      USERNAME: ${USERNAME}
-      PASSWORD: ${PASSWORD}
-      MARVEL_PRIVATE_KEY: ${MARVEL_PRIVATE_KEY}
-      MARVEL_PUBLIC_KEY: ${MARVEL_PUBLIC_KEY}
     # Steps to the job
     steps:
       - checkout
@@ -24,10 +19,10 @@ jobs:
       - run:
           name: Set up environment variables into .env
           command: |
-            echo "USERNAME=$USERNAME" > .env
-            echo "PASSWORD=$PASSWORD" >> .env
-            echo "MARVEL_PRIVATE_KEY=$MARVEL_PRIVATE_KEY" >> .env
-            echo "MARVEL_PUBLIC_KEY=$MARVEL_PUBLIC_KEY" >> .env
+            echo "USERNAME=${USERNAME}" > .env
+            echo "PASSWORD=${PASSWORD}" >> .env
+            echo "MARVEL_PRIVATE_KEY=${MARVEL_PRIVATE_KEY}" >> .env
+            echo "MARVEL_PUBLIC_KEY=${MARVEL_PUBLIC_KEY}" >> .env
       - run:
           name: Run API and E2E tests
           environment:
