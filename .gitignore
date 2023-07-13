@@ -5,6 +5,7 @@ node_modules/
 /playwright-report/
 /playwright/.cache/
 results.xml
+results.html
 
 # Other files
 _.env

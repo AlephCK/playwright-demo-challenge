@@ -27,11 +27,11 @@ jobs:
             PLAYWRIGHT_JUNIT_OUTPUT_DIR: /test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
           command:
-            npm run test-ci
+            npm run test-headless
       - store_test_results:
-          path: ~/project/test-results/
+          path: results.xml
       - store_artifacts:
-          path: ~/project/playwright-report/
+          path: results.html
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
