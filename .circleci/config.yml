@@ -22,12 +22,12 @@ jobs:
           command:
             npm run lint-check
       - run:
-          name: Set up environment variables
+          name: Set up environment variables into .env
           command: |
-            echo 'export USERNAME="${USERNAME}"' >> "$BASH_ENV"
-            echo 'export PASSWORD="${PASSWORD}"' >> "$BASH_ENV"
-            echo 'export MARVEL_PRIVATE_KEY="${MARVEL_PRIVATE_KEY}"' >> "$BASH_ENV"
-            echo 'export MARVEL_PUBLIC_KEY="${MARVEL_PUBLIC_KEY}"' >> "$BASH_ENV"
+            echo "USERNAME=$USERNAME" > .env
+            echo "PASSWORD=$PASSWORD" >> .env
+            echo "MARVEL_PRIVATE_KEY=$MARVEL_PRIVATE_KEY" >> .env
+            echo "MARVEL_PUBLIC_KEY=$MARVEL_PUBLIC_KEY" >> .env
       - run:
           name: Run API and E2E tests
           environment:
