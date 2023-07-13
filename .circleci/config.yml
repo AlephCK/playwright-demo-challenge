@@ -6,10 +6,10 @@ jobs:
     environment:
       ## this enables colors in the output
       TERM: xterm
-      USERNAME: "<USERNAME>"
-      PASSWORD: "<PASSWORD>"
-      MARVEL_PRIVATE_KEY: "<MARVEL_PRIVATE_KEY>"
-      MARVEL_PUBLIC_KEY: "<MARVEL_PUBLIC_KEY>"
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+      MARVEL_PRIVATE_KEY: ${MARVEL_PRIVATE_KEY}
+      MARVEL_PUBLIC_KEY: ${MARVEL_PUBLIC_KEY}
     # Steps to the job
     steps:
       - checkout
@@ -31,7 +31,7 @@ jobs:
       - store_test_results:
           path: results.xml
       - store_artifacts:
-          path: /playwright-report
+          path: /playwright-report/index.html
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
