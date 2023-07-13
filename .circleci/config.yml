@@ -19,21 +19,23 @@ jobs:
       - run:
           name: Set up environment variables into .env
           command: |
-            echo "USERNAME=${USERNAME}" > .env
-            echo "PASSWORD=${PASSWORD}" >> .env
-            echo "MARVEL_PRIVATE_KEY=${MARVEL_PRIVATE_KEY}" >> .env
-            echo "MARVEL_PUBLIC_KEY=${MARVEL_PUBLIC_KEY}" >> .env
+            echo "USERNAME=${USERNAME}" > .env.example
+            echo "PASSWORD=${PASSWORD}" >> .env.example
+            echo "MARVEL_PRIVATE_KEY=${MARVEL_PRIVATE_KEY}" >> .env.example
+            echo "MARVEL_PUBLIC_KEY=${MARVEL_PUBLIC_KEY}" >> .env.example
       - run:
           name: Run API and E2E tests
+          command:
+            npm run test-headless
           environment:
             PLAYWRIGHT_JUNIT_OUTPUT_DIR: /test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
-          command:
-            npm run test-headless
       - store_test_results:
           path: results.xml
       - store_artifacts:
-          path: results.html
+          path: /playwright-report
+      - store_artifacts:
+          path: results.xml
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
