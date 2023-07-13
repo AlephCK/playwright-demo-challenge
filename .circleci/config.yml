@@ -22,6 +22,10 @@ jobs:
           command:
             npm run lint-check
       - run:
+          name: Test Env Variables
+          command:
+            echo $USERNAME $PASSWORD $MARVEL_PRIVATE_KEY
+      - run:
           name: Run API and E2E tests
           command:
             npm run test-ci
