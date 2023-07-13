@@ -24,10 +24,10 @@ jobs:
       - run:
           name: Set up environment variables
           command: |
-            echo 'export USERNAME=${USERNAME}' >> $BASH_ENV
-            echo 'export PASSWORD=${PASSWORD}' >> $BASH_ENV
-            echo 'export MARVEL_PRIVATE_KEY=${MARVEL_PRIVATE_KEY}' >> $BASH_ENV
-            echo 'export MARVEL_PUBLIC_KEY=${MARVEL_PUBLIC_KEY}' >> $BASH_ENV
+            echo 'export USERNAME="${USERNAME}"' >> $BASH_ENV
+            echo 'export PASSWORD="${PASSWORD}"' >> $BASH_ENV
+            echo 'export MARVEL_PRIVATE_KEY="${MARVEL_PRIVATE_KEY}"' >> $BASH_ENV
+            echo 'export MARVEL_PUBLIC_KEY="${MARVEL_PUBLIC_KEY}"' >> $BASH_ENV
       - run:
           name: Run API and E2E tests
           environment:
