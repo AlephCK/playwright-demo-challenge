@@ -7,7 +7,8 @@
     "test-headed": "npx playwright test --headed",
     "test-headless": "npx playwright test",
     "lint-check": "npx eslint",
-    "lint-fix": "npx eslint --fix"
+    "lint-fix": "npx eslint --fix",
+    "test-ci": "PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml npx playwright test --reporter=junit"
   },
   "author": "Aleph Cruz",
   "license": "ISC",

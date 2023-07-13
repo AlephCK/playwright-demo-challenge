@@ -28,6 +28,7 @@ test.beforeAll(async () => {
     dataInfo.employeeData.adminEmployeeFirstName,
     dataInfo.employeeData.adminEmployeeLastName
   );
+  await generalElementsPage.clickSaveButton();
   await loginPage.logoutUser();
 });
 

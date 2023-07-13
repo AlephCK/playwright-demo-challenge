@@ -3,7 +3,13 @@ jobs:
   run-test:
     docker:
       - image: mcr.microsoft.com/playwright:v1.36.0
-    working_directory: ~/repo
+    environment:
+      ## this enables colors in the output
+      TERM: xterm
+      USERNAME: "<USERNAME>"
+      PASSWORD: "<PASSWORD>"
+      MARVEL_PRIVATE_KEY: "<MARVEL_PRIVATE_KEY>"
+      MARVEL_PUBLIC_KEY: "<MARVEL_PUBLIC_KEY>"
     # Steps to the job
     steps:
       - checkout
@@ -18,14 +24,14 @@ jobs:
       - run:
           name: Run API and E2E tests
           command:
-            PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml MARVEL_PRIVATE_KEY=$MARVEL_PRIVATE_KEY MARVEL_PUBLIC_KEY=$MARVEL_PUBLIC_KEY npx playwright test --reporter=junit
+            npm run test-ci
           environment:
-            PLAYWRIGHT_JUNIT_OUTPUT_DIR: ~/test-results
+            PLAYWRIGHT_JUNIT_OUTPUT_DIR: /test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
       - store_test_results:
-          path: ~/test-results
+          path: results.xml
       - store_artifacts:
-          path: ~/playwright-report
+          path: /playwright-report
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:

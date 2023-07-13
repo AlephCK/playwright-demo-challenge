@@ -10,7 +10,7 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['html', { open: 'never' }],
-    ['junit', { outputFile: 'test-results/results.xml' }],
+    ['junit', { outputFile: 'results.xml' }],
   ],
   use: {
     trace: 'on-first-retry',
