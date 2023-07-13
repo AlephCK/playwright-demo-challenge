@@ -6,10 +6,10 @@ jobs:
     environment:
       ## this enables colors in the output
       TERM: xterm
-      USERNAME: $USERNAME
-      PASSWORD: $PASSWORD
-      MARVEL_PRIVATE_KEY: $MARVEL_PRIVATE_KEY
-      MARVEL_PUBLIC_KEY: $MARVEL_PUBLIC_KEY
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+      MARVEL_PRIVATE_KEY: ${MARVEL_PRIVATE_KEY}
+      MARVEL_PUBLIC_KEY: ${MARVEL_PUBLIC_KEY}
     # Steps to the job
     steps:
       - checkout
