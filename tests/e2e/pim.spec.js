@@ -1,12 +1,12 @@
 // @ts-check
 const { test } = require('@playwright/test');
 
-const { toastNotification } = require('../data/toastNotificationData');
-const { employeeInfo } = require('../data/employeeInputData')
+const { toastNotification } = require('../../data/toastNotificationData');
+const { dataInfo } = require('../../data/inputData');
 
-const { LoginPage } = require('../pages/login-page');
-const { GeneralElementsPage } = require('../pages/general-elements-page');
-const { EmployeePage } = require('../pages/pim-employees-page');
+const { LoginPage } = require('../../pages/login-page');
+const { GeneralElementsPage } = require('../../pages/general-elements-page');
+const { EmployeePage } = require('../../pages/pim-employees-page');
 
 
 test.beforeEach(async ({ page }) => {
@@ -15,7 +15,7 @@ test.beforeEach(async ({ page }) => {
 
   await loginPage.goto();
   await loginPage.checkLoginPage();
-  await loginPage.inputUserCredentials('Admin', 'admin123')
+  await loginPage.inputUserCredentials(process.env.USERNAME, process.env.PASSWORD);
   await generalElementsPage.checkTopHeaderText('Dashboard');
 
   await generalElementsPage.clickMenuItem('PIM');
@@ -27,49 +27,56 @@ test('Add new employee', async ({ page }) => {
   const generalElementsPage = new GeneralElementsPage(page);
 
   await generalElementsPage.clickAddButton();
-  await employeePage.fillNewEmployee();
+  await employeePage.fillNewEmployee(
+    dataInfo.employeeData.firstName1,
+    dataInfo.employeeData.lastName
+  );
   await generalElementsPage.clickSaveButton();
   await generalElementsPage.checkToastNotification(toastNotification.succesfulMessage);
 
-  await employeePage.validateEmployeeData(employeeInfo.employeeData.FirstName1);
+  await employeePage.validateEmployeeData(dataInfo.employeeData.firstName1);
 });
 
 test('Search an employee', async ({ page }) => {
   const employeePage = new EmployeePage(page);
   const generalElementsPage = new GeneralElementsPage(page);
 
-  await employeePage.searchEmployeeByName(employeeInfo.employeeData.FirstName1);
+  await employeePage.searchEmployeeByName(dataInfo.employeeData.firstName1);
   await generalElementsPage.clickSearchButton();
-  await employeePage.checkSearchEmployeeByNameResults(employeeInfo.employeeData.FirstName1);
+  await employeePage.checkSearchEmployeeByNameResults(dataInfo.employeeData.firstName1);
 });
 
 test('Update an employee', async ({ page }) => {
   const employeePage = new EmployeePage(page);
   const generalElementsPage = new GeneralElementsPage(page);
 
-  await employeePage.searchEmployeeByName(employeeInfo.employeeData.FirstName1);
+  await employeePage.searchEmployeeByName(dataInfo.employeeData.firstName1);
   await generalElementsPage.clickSearchButton();
-  await employeePage.checkSearchEmployeeByNameResults(employeeInfo.employeeData.FirstName1);
+  await employeePage.checkSearchEmployeeByNameResults(dataInfo.employeeData.firstName1);
 
   await generalElementsPage.clickEditButton();
   await generalElementsPage.checkifLoaderIsNotVisible();
-  await employeePage.updateEmployee(employeeInfo.employeeData.FirstName2);
+  await employeePage.updateEmployee(
+    dataInfo.employeeData.firstName2,
+    dataInfo.employeeData.lastName
+  );
+  await generalElementsPage.clickSaveButton();
   await generalElementsPage.checkToastNotification(toastNotification.updatedMessage);
-  await employeePage.validateEmployeeData(employeeInfo.employeeData.FirstName2);
+  await employeePage.validateEmployeeData(dataInfo.employeeData.firstName2);
 });
 
 test('Delete an employee', async ({ page }) => {
   const employeePage = new EmployeePage(page);
   const generalElementsPage = new GeneralElementsPage(page);
 
-  await employeePage.searchEmployeeByName(employeeInfo.employeeData.FirstName2);
+  await employeePage.searchEmployeeByName(dataInfo.employeeData.firstName2);
   await generalElementsPage.clickSearchButton();
-  await employeePage.checkSearchEmployeeByNameResults(employeeInfo.employeeData.FirstName2);
+  await employeePage.checkSearchEmployeeByNameResults(dataInfo.employeeData.firstName2);
 
   await generalElementsPage.clickDeleteButton();
   await generalElementsPage.checkToastNotification(toastNotification.deletedMessage);
 
-  await employeePage.searchEmployeeByName(employeeInfo.employeeData.FirstName2);
+  await employeePage.searchEmployeeByName(dataInfo.employeeData.firstName2);
   await generalElementsPage.clickSearchButton();
-  await employeePage.checkIfDeletedEmployeeReturnsNoResults(employeeInfo.employeeData.FirstName2);
+  await employeePage.checkIfDeletedEmployeeReturnsNoResults(dataInfo.employeeData.firstName2);
 });

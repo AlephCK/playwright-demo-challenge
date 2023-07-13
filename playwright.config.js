@@ -1,5 +1,6 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
+require("dotenv").config({ path: "./.env" });
 
 module.exports = defineConfig({
   testDir: './tests',
@@ -15,11 +16,16 @@ module.exports = defineConfig({
     trace: 'on-first-retry',
   },
 
-  /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'E2E Tests',
+      testDir: './tests/e2e',
+      use: { browserName: 'chromium' },
+    },
+    {
+      name: 'API Tests',
+      testDir: './tests/api',
+      use: { baseURL: 'https://gateway.marvel.com:443/v1/public/' },
     },
   ],
 });

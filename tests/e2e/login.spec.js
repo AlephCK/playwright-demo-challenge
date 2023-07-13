@@ -1,7 +1,7 @@
 // @ts-check
 const { test } = require('@playwright/test');
-const { LoginPage } = require('../pages/login-page');
-const { GeneralElementsPage } = require('../pages/general-elements-page');
+const { LoginPage } = require('../../pages/login-page');
+const { GeneralElementsPage } = require('../../pages/general-elements-page');
 
 test('Login with valid credentials', async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -9,7 +9,7 @@ test('Login with valid credentials', async ({ page }) => {
 
   await loginPage.goto();
   await loginPage.checkLoginPage();
-  await loginPage.inputUserCredentials('Admin', 'admin123')
+  await loginPage.inputUserCredentials(process.env.USERNAME, process.env.PASSWORD);
   await generalElementsPage.checkTopHeaderText('Dashboard');
 });
 
@@ -28,7 +28,7 @@ test('Logout', async ({ page }) => {
 
   await loginPage.goto();
   await loginPage.checkLoginPage();
-  await loginPage.inputUserCredentials('Admin', 'admin123')
+  await loginPage.inputUserCredentials(process.env.USERNAME, process.env.PASSWORD);
   await generalElementsPage.checkTopHeaderText('Dashboard');
   await loginPage.logoutUser();
   await loginPage.checkLoginPage();

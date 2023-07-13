@@ -1,3 +1,4 @@
+//@ts-check
 const { expect } = require('@playwright/test');
 
 exports.LoginPage = class LoginPage {

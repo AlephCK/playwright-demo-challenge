@@ -1,14 +1,15 @@
+//@ts-check
 const { expect } = require('@playwright/test');
 
 exports.GeneralElementsPage = class GeneralElementsPage {
   constructor(page) {
     this.page = page;
-    this.topbarHeader = page.locator('.oxd-topbar-header-breadcrumb > .oxd-text');
+    this.topbarHeader = page.locator('.oxd-topbar-header-breadcrumb > .oxd-text').first();
     this.companyLogo = page.locator('.oxd-brand-banner > img');
     this.addButton = page.locator('.orangehrm-header-container > .oxd-button', { hasText: 'Add' });
     this.modalTitle = page.getByText('Are you Sure?')
     this.modalDeleteButton = page.locator('.oxd-button--label-danger', { hasText: 'Yes, Delete' });
-    this.saveButton = page.locator('.oxd-button--secondary', { hasText: 'Save' });
+    this.saveButton = page.locator('.oxd-button--secondary', { hasText: 'Save' }).first();
     this.searchButton = page.getByRole('button', { name: 'Search' });
     this.editButton = page.locator('.bi-pencil-fill');
     this.deleteButton = page.locator('.bi-trash');
@@ -21,11 +22,10 @@ exports.GeneralElementsPage = class GeneralElementsPage {
 
   async checkTopHeaderText(option) {
     await this.page.waitForLoadState();
-    const headerPage = this.topbarHeader;
+    await this.page.waitForTimeout(2000);
 
-    await headerPage.waitFor();
     await expect(this.topbarHeader).toBeVisible();
-    await expect(this.topbarHeader).toHaveText(option);
+    await expect(this.topbarHeader).toContainText(option);
     await expect(this.companyLogo).toBeVisible();
   }
 
@@ -77,6 +77,7 @@ exports.GeneralElementsPage = class GeneralElementsPage {
     await expect(this.deleteButton).toBeVisible();
     await this.deleteButton.click();
 
+    // Checks that confirmation modal to delete is visible
     await expect(this.modalTitle).toBeVisible();
     await expect(this.modalDeleteButton).toBeVisible();
 

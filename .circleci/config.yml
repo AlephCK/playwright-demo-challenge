@@ -3,16 +3,33 @@ jobs:
   run-test:
     docker:
       - image: mcr.microsoft.com/playwright:v1.36.0
+    working_directory: ~/repo
     # Steps to the job
     steps:
       - checkout
-      - run: npm i -D @playwright/test
-      - run: npx playwright install chrome
+      - run:
+          npm i -D @playwright/test
+      - run:
+          npx playwright install --with-deps chrome
+      - run:
+          name: Check Lint
+          command:
+            npm run lint-check
       - run:
           name: Run test
-          command: PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml npx playwright test --reporter=junit --project=chromium
+          command:
+            npx playwright test --reporter=junit --project=chromium
+          environment:
+            PLAYWRIGHT_JUNIT_OUTPUT_DIR: ~/test-results
+            PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
       - store_test_results:
-          path: results.xml
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results
+          destination: artifacts
+      - store_artifacts:
+          path: ~/playwright-report
+          destination: artifacts
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
