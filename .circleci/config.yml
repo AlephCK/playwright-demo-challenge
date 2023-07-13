@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Run API and E2E tests
           command:
-            MARVEL_PRIVATE_KEY=${MARVEL_PRIVATE_KEY} MARVEL_PUBLIC_KEY=${MARVEL_PUBLIC_KEY} npx playwright test --reporter=junit
+            PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml MARVEL_PRIVATE_KEY=$MARVEL_PRIVATE_KEY MARVEL_PUBLIC_KEY=$MARVEL_PUBLIC_KEY npx playwright test --reporter=junit
           environment:
             PLAYWRIGHT_JUNIT_OUTPUT_DIR: ~/test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
