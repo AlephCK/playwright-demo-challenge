@@ -3,17 +3,19 @@ jobs:
   run-test:
     docker:
       - image: mcr.microsoft.com/playwright:v1.36.0
+    environment:
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+      MARVEL_PRIVATE_KEY: ${MARVEL_PRIVATE_KEY}
+      MARVEL_PUBLIC_KEY: ${MARVEL_PUBLIC_KEY}
     # Steps to the job
     steps:
       - checkout
       - run:
           name: Install dependencies
-          command: npm install
-      - run:
-          name: Install Playwright 
           command: npm i -D @playwright/test
       - run:
-          name: Install Chrome browser to use on Playwright
+          name: Install Playwright with Chrome
           command: npx playwright install --with-deps chrome
       - run:
           name: Check Lint
@@ -24,10 +26,6 @@ jobs:
           environment:
             PLAYWRIGHT_JUNIT_OUTPUT_DIR: /test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
-            USERNAME: ${USERNAME}
-            PASSWORD: ${PASSWORD}
-            MARVEL_PRIVATE_KEY: ${MARVEL_PRIVATE_KEY}
-            MARVEL_PUBLIC_KEY: ${MARVEL_PUBLIC_KEY}
           command:
             npm run test-ci
       - store_test_results:
