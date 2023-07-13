@@ -21,10 +21,10 @@ jobs:
           environment:
             PLAYWRIGHT_JUNIT_OUTPUT_DIR: /test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
-            USERNAME: USERNAME
-            PASSWORD: PASSWORD
-            MARVEL_PRIVATE_KEY: MARVEL_PRIVATE_KEY
-            MARVEL_PUBLIC_KEY: MARVEL_PUBLIC_KEY
+            USERNAME: ${USERNAME}
+            PASSWORD: ${PASSWORD}
+            MARVEL_PRIVATE_KEY: ${MARVEL_PRIVATE_KEY}
+            MARVEL_PUBLIC_KEY: ${MARVEL_PUBLIC_KEY}
           command:
             npm run test-ci
       - store_test_results:
