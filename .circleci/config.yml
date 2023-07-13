@@ -8,9 +8,12 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
+          command: npm install
+      - run:
+          name: Install Playwright 
           command: npm i -D @playwright/test
       - run:
-          name: Install Playwright with Chrome
+          name: Install Chrome browser to use on Playwright
           command: npx playwright install --with-deps chrome
       - run:
           name: Check Lint
