@@ -21,15 +21,14 @@ jobs:
           environment:
             PLAYWRIGHT_JUNIT_OUTPUT_DIR: /test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml
-            TERM: xterm
             USERNAME: ${USERNAME}
             PASSWORD: ${PASSWORD}
             MARVEL_PRIVATE_KEY: ${MARVEL_PRIVATE_KEY}
             MARVEL_PUBLIC_KEY: ${MARVEL_PUBLIC_KEY}
       - store_test_results:
-          path: ~/project/test-results/results.xml
+          path: ~/project/test-results/
       - store_artifacts:
-          path: ~/project/playwright-report/index.html
+          path: ~/project/playwright-report/
 # Invoke jobs via workflows
 workflows:
   run-test-workflow:
