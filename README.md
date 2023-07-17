@@ -80,7 +80,7 @@ npm run test-open-ui
 
 Show test reports
 ```bash
-npm run test-show-repor
+npm run test-show-report
 ```
 
 Run all specs (both API and e2e)
