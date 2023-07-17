@@ -61,19 +61,13 @@ npm install
 ### Using credentials to run Playwrigth Tests
 First, create a Marvel Developers account and follow their official documentation here: https://developer.marvel.com/documentation/getting_started, in order to get the API Keys that are needed to run this project.
 
-We use the `cypress.env.json` to add the credentials used for both API and e2e specs tests:
+We use `.env` file to add the credentials used for both API and e2e specs tests locally:
 
-```json
-{
-  "user":{
-    "testUser": "Admin",
-    "testPassword": "admin123"
-  },
-  "marvel":{
-    "privateKey": "<Insert Marvel API private key here>",
-    "publicKey": "<Insert Marvel API public key here>"
-  }
-}
+```
+USERNAME: 'Admin'
+PASSWORD: 'admin123'
+MARVEL_PRIVATE_KEY: '{MARVEL_PRIVATE_KEY}'
+MARVEL_PUBLIC_KEY: '{MARVEL_PUBLIC_KEY}'
 ```
 
 ### How To Use Playwright
@@ -81,51 +75,27 @@ The following commands can be used in order to run the test cases:
 
 Open UI mode
 ```bash
-npx playwright test --ui
+npm run test-open-ui
 ```
 
-#### Linux and Mac Users
-
-Removes test reports
+Show test reports
 ```bash
-npm run pretest
-```
-
-Run all specs (both API and e2e)
-```bash
-npm run all-specs
-```
-
-Run the e2e tests
-```bash
-npx playwright test
-```
-
-Run the API tests
-```bash
-npm run api-specs
-```
-
-#### Windows Users
-
-Removes test reports
-```bash
-npm run pretest-windows
+npm run test-show-repor
 ```
 
 Run all specs (both API and e2e)
 ```bash
-npm run windows-all-specs
+npm run test-all
 ```
 
 Run the e2e tests
 ```bash
-npm run windows-e2e-specs
+npm run test-e2e
 ```
 
 Run the API tests
 ```bash
-npm run windows-api-specs
+npm run test-api
 ```
 
 ### Before doing a commit

@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Run API and E2E tests
           command:
-            npm run test-headless
+            npm run test-all
           environment:
             PLAYWRIGHT_JUNIT_OUTPUT_DIR: /test-results
             PLAYWRIGHT_JUNIT_OUTPUT_NAME: results.xml

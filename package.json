@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test-headed": "npx playwright test --headed",
-    "test-headless": "npx playwright test",
+    "test-all": "npx playwright test",
+    "test-open-ui": "npx playwright test --ui",
+    "test-show-report": "npx playwright show-report",
+    "test-e2e": "npx playwright test tests/e2e/",
+    "test-api": "npx playwright test tests/api/",
     "lint-check": "npx eslint",
     "lint-fix": "npx eslint --fix"
   },
