@@ -4,7 +4,6 @@
   "description": "This project is part of the Senior Automation Challenge v2 to automate functional test cases of OrangeHRM and API tests for Marvel Website",
   "main": "index.js",
   "scripts": {
-    "test-headed": "npx playwright test --headed",
     "test-all": "npx playwright test",
     "test-open-ui": "npx playwright test --ui",
     "test-show-report": "npx playwright show-report",
