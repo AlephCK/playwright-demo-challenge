@@ -4,11 +4,12 @@
   "description": "This project is part of the Senior Automation Challenge v2 to automate functional test cases of OrangeHRM and API tests for Marvel Website",
   "main": "index.js",
   "scripts": {
-    "test-all": "npx playwright test",
+    "pretest": "rm -rf playwright-report/ && rm results.xml",
+    "test-all": "npm run pretest && npx playwright test",
     "test-open-ui": "npx playwright test --ui",
     "test-show-report": "npx playwright show-report",
-    "test-e2e": "npx playwright test tests/e2e/",
-    "test-api": "npx playwright test tests/api/",
+    "test-e2e": "npm run pretest && npx playwright test tests/e2e/",
+    "test-api": "npm run pretest && npx playwright test tests/api/",
     "lint-check": "npx eslint",
     "lint-fix": "npx eslint --fix"
   },
